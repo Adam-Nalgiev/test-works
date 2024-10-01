@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">BinetService</string>
+    <string name="list">List</string>
+    <string name="search_hint">Enter a request</string>
+    <string name="where_buy">Where buy</string>
+
+    <string name="error_get_drug">Error of getting drug data process. Check your connection and retry.</string>
+</resources>

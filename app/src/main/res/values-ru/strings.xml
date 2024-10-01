@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="list">Список</string>
+    <string name="search_hint">Введите запрос</string>
+    <string name="where_buy">Где купить</string>
+
+    <string name="error_get_drug">Ошибка получение информации о препарате. Проверьте соединение и попробуйте еще раз.</string>
+</resources>

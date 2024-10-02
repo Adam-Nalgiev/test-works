@@ -28,7 +28,7 @@ class ListViewModel @Inject constructor(private val getDrugsListUseCase: GetDrug
         drugs =
             if (requestText != null) {
                 Pager(
-                    config = PagingConfig(10),
+                    config = PagingConfig(1),
                     initialKey = null,
                     pagingSourceFactory = {
                         ListFoundDrugsPagingSource(getFoundDrugsUseCase, requestText)

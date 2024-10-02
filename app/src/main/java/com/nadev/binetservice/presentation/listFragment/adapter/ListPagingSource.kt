@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class ListPagingSource @Inject constructor(private val getDrugsListUseCase: GetDrugsListUseCase) : PagingSource<Int, DrugsDto>() {
 
-    override fun getRefreshKey(state: PagingState<Int, DrugsDto>): Int = 1
+    override fun getRefreshKey(state: PagingState<Int, DrugsDto>): Int = 0
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DrugsDto> {
         val page = params.key ?: 0

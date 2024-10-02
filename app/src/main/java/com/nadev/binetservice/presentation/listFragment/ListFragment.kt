@@ -60,12 +60,13 @@ class ListFragment : Fragment() {
 
                 viewLifecycleOwner.lifecycleScope.launch {
                     if (searchField.text.toString() == "") {
+                        viewModel.changeRecyclerData(null)
                         viewModel.drugs.collect {
                             adapter.submitData(it)
                         }
                     } else {
-                        viewModel.setRequestText(searchField.text.toString())
-                        viewModel.foundDrugs.collect {
+                        viewModel.changeRecyclerData(searchField.text.toString())
+                        viewModel.drugs.collect {
                             adapter.submitData(it)
                         }
                     }

@@ -16,19 +16,31 @@ import javax.inject.Inject
 
 class ListViewModel @Inject constructor(private val getDrugsListUseCase: GetDrugsListUseCase, private val getFoundDrugsUseCase: GetFoundDrugsUseCase): ViewModel() {
 
-    private var request = ""
+    var drugs: Flow<PagingData<DrugsDto>> =
+        Pager(
+            config = PagingConfig(10),
+            initialKey = null,
+            pagingSourceFactory = { ListPagingSource(getDrugsListUseCase) }
+        ).flow.cachedIn(viewModelScope)
 
-    val drugs: Flow<PagingData<DrugsDto>> =
-        Pager(config = PagingConfig(10), null, pagingSourceFactory = { ListPagingSource(getDrugsListUseCase) }).flow.cachedIn(
-            viewModelScope
-        )
-    var foundDrugs: Flow<PagingData<DrugsDto>> =
-        Pager(config = PagingConfig(10), null, pagingSourceFactory = { ListFoundDrugsPagingSource(getFoundDrugsUseCase, request)}).flow.cachedIn(
-            viewModelScope
-        )
 
-    fun setRequestText(requestText: String) {
-        request = requestText
+    fun changeRecyclerData(requestText: String?) {
+        drugs =
+            if (requestText != null) {
+                Pager(
+                    config = PagingConfig(10),
+                    initialKey = null,
+                    pagingSourceFactory = {
+                        ListFoundDrugsPagingSource(getFoundDrugsUseCase, requestText)
+                    }
+                ).flow.cachedIn(viewModelScope)
+            } else {
+                Pager(
+                    config = PagingConfig(10),
+                    initialKey = null,
+                    pagingSourceFactory = { ListPagingSource(getDrugsListUseCase) }
+                ).flow.cachedIn(viewModelScope)
+            }
     }
 
 }

@@ -63,6 +63,7 @@ class ItemCardFragment : Fragment() {
                             isFirstResource: Boolean
                         ): Boolean {
                             binding.progressBar.isVisible = false
+                            binding.textDrugDescription.text = getText(R.string.error_get_drug)
                             return false
                         }
 
@@ -73,14 +74,13 @@ class ItemCardFragment : Fragment() {
                             dataSource: DataSource?,
                             isFirstResource: Boolean
                         ): Boolean {
+                            binding.textDrugName.text = drugsData.name
+                            binding.textDrugDescription.text = drugsData.description
                             binding.progressBar.isVisible = false
                             return false
                         }
                     }
                 ).into(binding.imageDrug)
-
-                binding.textDrugName.text = drugsData.name
-                binding.textDrugDescription.text = drugsData.description
             }
         } else {
             Toast.makeText(requireContext(), getText(R.string.error_get_drug), Toast.LENGTH_LONG).show()
